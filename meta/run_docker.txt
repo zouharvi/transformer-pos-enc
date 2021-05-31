@@ -1,0 +1,15 @@
+docker build -f ./docker/Dockerfile_lsv --build-arg USER_UID=$UID --build-arg USER_NAME=$(id -un) -t pos-enc-dev .
+
+docker run -d -it --rm --runtime=nvidia --pid=host --ipc=host --user vzouhar \
+    --name pos-enc-dev \
+    -v /nethome/vzouhar/transformer-pos-enc:/transformer-pos-enc \
+    -v /data/users/mmosbach/datasets:/mdata \
+    -v /data/users/vzouhar/transformer-pos-enc:/data \
+    -v /data/users/vzouhar/logs:/logs \
+    pos-enc-dev
+
+######################################
+# Put kilt directory on PYTHONPATH
+######################################
+
+# export PYTHONPATH="$PYTHONPATH:/kilt"
