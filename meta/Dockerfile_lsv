@@ -1,7 +1,7 @@
 # Base image must at least have pytorch and CUDA installed.
 # We are using NVIDIA NGC's PyTorch image here, see: https://ngc.nvidia.com/catalog/containers/nvidia:pytorch for latest version
 FROM nvcr.io/nvidia/pytorch:20.09-py3
-LABEL repository="kilt"
+LABEL repository="transformer-pos-enc"
 
 # Set path to CUDA
 ENV CUDA_HOME=/usr/local/cuda
@@ -74,9 +74,9 @@ RUN chown -R ${USER_UID}:${USER_GID} /home/$USER_NAME/
 # RUN chown -R ${USER_UID}:${USER_GID} /opt/conda/lib/python3.6/site-packages/nlp
 
 # Set workdir when starting container
-WORKDIR /kilt
+WORKDIR /transformer-pos-enc
 
 # Add workdir to PYTHONPATH
-ENV PYTHONPATH="$PYTHONPATH:/kilt"
+ENV PYTHONPATH="$PYTHONPATH:/transformer-pos-enc"
 
 CMD ["/bin/bash"]

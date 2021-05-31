@@ -1,0 +1,6 @@
+[submodule "fairseq"]
+	path = fairseq
+	url = https://github.com/pytorch/fairseq.git
+[submodule "shortformer"]
+	path = shortformer
+	url = https://github.com/ofirpress/shortformer.git
