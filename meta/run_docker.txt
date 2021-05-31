@@ -1,4 +1,4 @@
-docker build -f ./docker/Dockerfile_lsv --build-arg USER_UID=$UID --build-arg USER_NAME=$(id -un) -t pos-enc-dev .
+docker build -f ./meta/Dockerfile_lsv --build-arg USER_UID=$UID --build-arg USER_NAME=$(id -un) -t pos-enc-dev .
 
 docker run -d -it --rm --runtime=nvidia --pid=host --ipc=host --user vzouhar \
     --name pos-enc-dev \
