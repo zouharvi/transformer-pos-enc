@@ -1,0 +1,26 @@
+docker build -f ./meta/Dockerfile_2 --build-arg USER_UID=$UID --build-arg USER_NAME=$(id -un) -t pos-enc .
+
+######################
+#     LSV Server     #
+######################
+
+docker run -d -it --rm --gpus=all --pid=host --ipc=host --user vzouhar \
+    --name pos-enc-dev \
+    -v /nethome/vzouhar/transformer-pos-enc:/transformer-pos-enc \
+    -v /data/users/mmosbach/datasets:/mdata \
+    -v /data/users/vzouhar/transformer-pos-enc:/data \
+    -v /data/users/vzouhar/logs:/logs \
+    pos-enc
+
+######################################
+# Put fairseq directory on PYTHONPATH
+######################################
+
+export PYTHONPATH="$PYTHONPATH:/transformer-pos-enc"
+export PYTHONPATH="$PYTHONPATH:/transformer-pos-enc/fairseq"
+
+######################################
+# Install fairseq inside container in editable mode
+######################################
+
+# pip install --editable fairseq
